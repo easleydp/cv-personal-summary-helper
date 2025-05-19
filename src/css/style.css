@@ -1,0 +1,285 @@
+:root {
+  --primary-color: #4a90e2;
+  --primary-hover: #3a7bc8;
+  --primary-active: #2d62a3;
+  --light-bg: #f5f5f5;
+  --light-border: #e0e0e0;
+  --dark-text: #333333;
+  --light-text: #ffffff;
+  --selection-bg: #f0f7ff;
+  --selection-border: #d0e0f5;
+  --error-color: #e53935;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --border-radius: 4px;
+  --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* Prevent scrollbar caused by rounding errors */
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  color: var(--dark-text);
+  background-color: #fafafa;
+  /* padding: var(--spacing-lg); */
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  line-height: 1.6;
+  color: var(--dark-text);
+  background-color: #fafafa;
+  padding: var(--spacing-lg);
+}
+
+.container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-width: 1200px;
+  margin: 0 auto; /* Center horizontally */
+  width: 100%; /* Allow to shrink on smaller screens */
+  overflow: hidden; /* Prevent minor overflow */
+}
+
+header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.tagline {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.instructions {
+  background-color: var(--selection-bg);
+  border: 1px solid var(--selection-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+}
+.instructions h2 {
+  margin-bottom: var(--spacing-sm);
+}
+.instructions p {
+  margin-bottom: var(--spacing-md);
+}
+
+.example {
+  font-style: italic;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: var(--spacing-md);
+  padding-bottom: 2px;
+  border-radius: var(--border-radius);
+  border-left: 3px solid var(--primary-color);
+}
+.example strong {
+  font-style: normal;
+}
+.example .highlight {
+  font-weight: bolder;
+}
+
+.bottom-panels {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+
+  gap: var(--spacing-lg);
+}
+
+.qualities-panel {
+  flex: 1;
+  background: white;
+  border: 1px solid var(--light-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--box-shadow);
+}
+.qualities-panel h2 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.qualities-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--spacing-sm);
+  height: calc(100% - 60px);
+  overflow-y: auto;
+  padding: var(--spacing-sm);
+}
+
+.quality-item {
+  background-color: var(--light-bg);
+  border: 1px solid var(--light-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  user-select: none;
+}
+.quality-item:hover {
+  background-color: #e9e9e9;
+}
+.quality-item:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+.quality-item.selected {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  border-color: var(--primary-hover);
+  font-weight: 500;
+}
+
+.results-panel {
+  width: 250px;
+  background: white;
+  border: 1px solid var(--light-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+}
+.results-panel h2 {
+  margin-bottom: var(--spacing-lg);
+}
+
+.selected-qualities {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: var(--spacing-lg);
+}
+
+.empty-state {
+  color: #888;
+  text-align: center;
+  padding: var(--spacing-lg);
+}
+
+.selected-quality {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--selection-bg);
+  border: 1px solid var(--selection-border);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+  margin-right: 4px;
+}
+
+.remove-quality {
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+.remove-quality:hover {
+  background-color: rgba(229, 57, 53, 0.1);
+  color: var(--error-color);
+}
+.remove-quality:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.copy-button {
+  background-color: var(--primary-color);
+  color: var(--light-text);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 var(--spacing-md);
+}
+.copy-button:hover {
+  background-color: var(--primary-hover);
+}
+.copy-button:active {
+  background-color: var(--primary-active);
+}
+.copy-button:focus {
+  outline: 2px solid var(--primary-active);
+  outline-offset: 2px;
+}
+.copy-button.hidden {
+  display: none;
+}
+
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 16px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.toast.show {
+  opacity: 1;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: var(--error-color);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--spacing-md);
+  border-left: 4px solid var(--error-color);
+}
+
+@media (max-width: 768px) {
+  .bottom-panels {
+    flex-direction: column;
+  }
+
+  .qualities-container {
+    height: 40vh;
+  }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CV Personal Summary Helper</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>CV Personal Summary Helper</h1>
+        <!-- <p class="tagline">Select qualities to enhance your CV profile</p> -->
+      </header>
+
+      <div class="instructions">
+        <h2>How to use this tool</h2>
+        <p>
+          Click on some qualities below to select ones that best describe you
+          professionally. Your selections will appear in the panel on the right.
+          When finished, click the "Copy to clipboard" button to easily transfer
+          your selected qualities to your CV.
+        </p>
+        <div class="example">
+          <p>
+            <strong>Example:</strong>
+            "A <span class="highlight">motivated</span> and
+            <span class="highlight">analytical</span> professional.
+            <span class="highlight">Adaptable</span> in fast-paced environments,
+            offering a <span class="highlight">dependable</span> and
+            <span class="highlight">conscientious</span> approach to every
+            challenge. Known for being
+            <span class="highlight">articulate</span>,
+            <span class="highlight">meticulous</span>, and consistently
+            <span class="highlight">focused</span>
+            on delivering <span class="highlight">accurate</span>,
+            <span class="highlight">effective</span> solutions with
+            <span class="highlight">enthusiasm</span>."
+          </p>
+        </div>
+      </div>
+
+      <div class="bottom-panels">
+        <div class="qualities-panel">
+          <h2>Available Qualities</h2>
+          <div id="qualities-container" class="qualities-container">
+            <!-- Qualities will be populated here by JavaScript -->
+            <div class="error-message hidden" id="error-message">
+              Unable to load qualities. Please refresh the page to try again.
+            </div>
+          </div>
+        </div>
+        <div class="results-panel">
+          <h2>Selected Qualities</h2>
+          <div
+            id="selected-qualities"
+            class="selected-qualities"
+            aria-live="polite"
+          >
+            <div class="empty-state" id="empty-state">
+              No qualities selected yet
+            </div>
+            <!-- Selected qualities will be populated here by JavaScript -->
+          </div>
+
+          <button id="copy-button" class="copy-button hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path
+                d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+              ></path>
+            </svg>
+            Copy to clipboard
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="js/qualities-data.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
