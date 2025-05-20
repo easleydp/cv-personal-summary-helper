@@ -88,6 +88,11 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  fill: currentColor;
+}
+.instructions .instructions-header button svg {
+  transition: transform 0.2s;
+  fill: var(--primary-color);
 }
 .instructions p {
   margin-bottom: var(--spacing-md);
