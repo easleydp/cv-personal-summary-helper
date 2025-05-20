@@ -3,17 +3,25 @@ const selectedQualities = new Set();
 
 // DOM References
 const qualitiesContainer = document.getElementById("qualities-container");
-const selectedQualitiesContainer =
-  document.getElementById("selected-qualities");
+const selectedQualitiesCt = document.getElementById("selected-qualities");
 const emptyState = document.getElementById("empty-state");
 const copyButton = document.getElementById("copy-button");
 const toast = document.getElementById("toast");
 const errorMessage = document.getElementById("error-message");
 
+const instrPanel = document.getElementById("instructions-panel");
+const instrHeader = instrPanel.getElementsByClassName("instructions-header")[0];
+const instrToggleBtn = instrHeader.getElementsByTagName("button")[0];
+const instrToggleIcon = instrToggleBtn.getElementsByTagName("svg")[0];
+const instrContent = instrPanel.getElementsByClassName(
+  "instructions-content"
+)[0];
+
 // Event Listeners
 qualitiesContainer.addEventListener("click", handleQualityClick);
-selectedQualitiesContainer.addEventListener("click", handleRemoveClick);
+selectedQualitiesCt.addEventListener("click", handleRemoveClick);
 copyButton.addEventListener("click", copyToClipboard);
+instrToggleBtn.addEventListener("click", handleInstructionsToggle);
 
 // Initialize the application
 initApp();
@@ -118,13 +126,13 @@ function renderSelectedQualities() {
 
   // Clear existing selected qualities (but not the empty state message)
   const selectedQualityEls =
-    selectedQualitiesContainer.getElementsByClassName("selected-quality");
+    selectedQualitiesCt.getElementsByClassName("selected-quality");
   Array.from(selectedQualityEls).forEach((el) =>
-    selectedQualitiesContainer.removeChild(el)
+    selectedQualitiesCt.removeChild(el)
   );
 
   // Append the new selected qualities
-  selectedQualitiesContainer.appendChild(fragment);
+  selectedQualitiesCt.appendChild(fragment);
 }
 
 function handleRemoveClick(event) {
@@ -148,6 +156,15 @@ function handleRemoveClick(event) {
     qualityItem.classList.remove("selected");
     qualityItem.setAttribute("aria-pressed", "false");
   }
+}
+
+function handleInstructionsToggle(event) {
+  let instrExpanded = instrContent.style.display !== "none";
+  instrContent.style.display = instrExpanded ? "none" : "";
+  instrToggleBtn.setAttribute("aria-expanded", instrExpanded);
+  instrToggleIcon.style.transform = instrExpanded
+    ? "rotate(0deg)"
+    : "rotate(-90deg)";
 }
 
 function copyToClipboard() {

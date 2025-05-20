@@ -84,8 +84,22 @@ h1 {
 .instructions h2 {
   margin-bottom: var(--spacing-sm);
 }
+.instructions .instructions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .instructions p {
   margin-bottom: var(--spacing-md);
+}
+.instructions .instructions-header button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-left: 1em;
+  display: flex;
+  align-items: center;
 }
 
 .example {
