@@ -159,11 +159,20 @@ function handleRemoveClick(event) {
 }
 
 function handleInstructionsToggle(event) {
-  let expand = instrContent.style.display === "none";
-  console.log(0, expand);
-  instrContent.style.display = expand ? "" : "none";
-  instrToggleBtn.setAttribute("aria-expanded", expand);
-  instrToggleIcon.style.transform = expand ? "rotate(0deg)" : "rotate(-90deg)";
+  var inner = function (event) {
+    let expand = instrContent.style.display === "none";
+    instrContent.style.display = expand ? "" : "none";
+    instrToggleBtn.setAttribute("aria-expanded", expand);
+    instrToggleIcon.style.transform = expand
+      ? "rotate(0deg)"
+      : "rotate(-90deg)";
+  };
+
+  if (!document.startViewTransition) {
+    inner(event);
+  } else {
+    document.startViewTransition(() => inner(event));
+  }
 }
 
 function copyToClipboard() {
